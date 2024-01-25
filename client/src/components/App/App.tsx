@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import axios from "axios";
-import { Road } from "./types";
-import RoadMap from "./RoadMap.tsx";
+import { Road } from "../../types";
+import RoadMap from "../RoadMap/RoadMap.tsx";
 
 const App: FC = () => {
     const [roads, setRoads] = useState<Road[]>([]);
