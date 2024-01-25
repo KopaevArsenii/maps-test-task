@@ -71,3 +71,7 @@ textarea:not([rows]) {
 :target {
     scroll-margin-block: 5ex;
 }
+
+map_wrapper {
+    height: 800px;
+}
