@@ -14,14 +14,6 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
     const center: Coordinate = [54.640246, 39.719048]
     const zoom: number = 10;
 
-    // function swapCoordinatesIn3DArray(coords: number[][][]): LatLngExpression[] | LatLngExpression[][] {
-    //     return coords.map(array2D =>
-    //         array2D.map(coordinate =>
-    //             [coordinate[1], coordinate[0]] as [number, number]
-    //         )
-    //     );
-    // }
-
     function swapCoordinate(coordinate: Coordinate): Coordinate {
         return [coordinate[1], coordinate[0]];
     }

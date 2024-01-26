@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from "react";
 import axios from "axios";
 import { Road } from "../../types";
 import RoadMap from "../RoadMap/RoadMap.tsx";
+import Spinner from "../Spinner/Spinner.tsx";
 
 const App: FC = () => {
     const [roads, setRoads] = useState<Road[]>([]);
@@ -22,7 +23,7 @@ const App: FC = () => {
     }, []);
     return (
         <div>
-            {roads.length === 0 ? <div>Loading</div> : <RoadMap roads={roads.filter(road => road.coordinates[0])} />}
+            {roads.length === 0 ? <Spinner /> : <RoadMap roads={roads.filter(road => road.coordinates[0])} />}
         </div>
     )
 }
