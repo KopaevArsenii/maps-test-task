@@ -18,27 +18,14 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
         return [coordinate[1], coordinate[0]];
     }
 
-    function swapCoordinatesArray(coordinates: [Coordinate[]]): Coordinate[] {
-        return coordinates?.[0].map(coordinate => swapCoordinate(coordinate))
+    function swapCoordinatesArray(coordinates: Coordinate[]): Coordinate[] {
+        return coordinates.map(coordinate => swapCoordinate(coordinate))
     }
 
 
-    function calculateCenterPosition(coordinates: [Coordinate[]]): Coordinate {
-        if (coordinates?.[0].length % 2 === 0 && coordinates?.[0].length > 2) {
-            const preMiddle = Math.round(coordinates?.[0].length / 2);
-            const postMiddle = preMiddle + 1;
-
-            // console.log(coordinates?.[0], preMiddle, postMiddle);
-            const first = coordinates?.[0][preMiddle];
-            const second = coordinates?.[0][postMiddle];
-            return [(first[1] + second[1]) / 2, (first[0] + second[0]) / 2]
-
-            // return [0, 0]
-        } else {
-            const index = Math.round(coordinates?.[0].length / 2);
-            // console.log(index)
-            return [coordinates?.[0]?.[index][1], coordinates?.[0]?.[index][0]]
-        }
+    function calculateCenterPosition(coordinates: Coordinate[]): Coordinate {
+        const index = Math.round(coordinates.length / 2);
+        return swapCoordinate(coordinates[index]);
     }
 
     return (
@@ -48,15 +35,10 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {roads.map((road) => {
-
-                    // if (road.id === 413) {
-                    //     console.log(road.coordinates)
-                    // }
-
+                {roads.map(road => {
                     return (
-                        <Polyline key={road.id} positions={swapCoordinatesArray(road.coordinates)} color="red">
-                            <Marker position={calculateCenterPosition(road.coordinates)}>
+                        <Polyline key={road.id} positions={swapCoordinatesArray(road.coordinates?.[0])} color="red">
+                            <Marker position={calculateCenterPosition(road.coordinates?.[0])}>
                                 <Popup>
                                     <div className={"info_wrapper"}>
                                         <InfoBlock title={"Id:"} info={road.id} />
@@ -70,7 +52,6 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
                         </Polyline>
                     )
                 })}
-
             </MapContainer>
         </div>
     )
