@@ -1,29 +1,41 @@
 import {FC, useEffect, useState} from "react";
 import axios from "axios";
-import { Road } from "../../types";
-import RoadMap from "../RoadMap/RoadMap.tsx";
+import {toast} from "react-toastify";
+
 import Spinner from "../Spinner/Spinner.tsx";
+import RoadMap from "../RoadMap/RoadMap.tsx";
+import { Road } from "../../types";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: FC = () => {
     const [roads, setRoads] = useState<Road[]>([]);
-
+    const [isLoading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>("");
     const fetchData = async () => {
-        const { data } = await axios.get<Road[]>("http://localhost:3000/data");
-        setRoads(data);
+        try {
+            const { data } = await axios.get<Road[]>("http://localhost:3000/data");
+            setRoads(data);
+        } catch(e) {
+            setError("Ошибка при запроса данных! Попробуйте позже")
+        } finally {
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
         fetchData();
-        roads.forEach(road => {
-            if (road.id == 3) {
-                console.log(JSON.stringify(road))
-            }
-        })
-        console.log(roads);
     }, []);
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [error]);
+
     return (
         <div>
-            {roads.length === 0 ? <Spinner /> : <RoadMap roads={roads.filter(road => road.coordinates[0])} />}
+            {roads.length === 0 && isLoading ? <Spinner /> : <RoadMap roads={roads.filter(road => road.coordinates[0])} />}
         </div>
     )
 }
