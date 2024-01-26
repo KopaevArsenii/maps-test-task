@@ -9,7 +9,7 @@ interface InfoBlockProps {
 const InfoBlock:FC<InfoBlockProps> = ({ title, info }) => {
     return (
         <div>
-            <div className="info_title">{title}</div>
+            <div className="info-title">{title}</div>
             <div>{info}</div>
         </div>
     )

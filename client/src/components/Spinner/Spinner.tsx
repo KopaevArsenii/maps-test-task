@@ -5,8 +5,8 @@ import spinner from "../../assets/spinner.svg"
 
 const Spinner:FC = () => {
     return (
-        <div className={"spinner_wrapper"}>
-            <img className={"spinner_svg"} src={spinner} alt="Loading..."/>
+        <div className={"spinner-wrapper"}>
+            <img className={"spinner-svg"} src={spinner} alt="Loading..."/>
         </div>
     )
 }

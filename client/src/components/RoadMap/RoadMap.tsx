@@ -37,10 +37,10 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
                 />
                 {roads.map(road => {
                     return (
-                        <Polyline key={road.id} positions={swapCoordinatesArray(road.coordinates?.[0])} color="red">
-                            <Marker position={calculateCenterPosition(road.coordinates?.[0])}>
+                        <Polyline key={road.id} positions={swapCoordinatesArray(road.coordinates[0])} color="red">
+                            <Marker position={calculateCenterPosition(road.coordinates[0])}>
                                 <Popup>
-                                    <div className={"info_wrapper"}>
+                                    <div className={"info-wrapper"}>
                                         <InfoBlock title={"Id:"} info={road.id} />
                                         <InfoBlock title={"Название:"} info={road.name} />
                                         <InfoBlock title={"Номер:"} info={road.number} />
