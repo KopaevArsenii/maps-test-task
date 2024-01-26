@@ -5,15 +5,18 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
+const clientUrl = 'http://localhost:5174'
+const dataUrl = "https://its62.ru/static-cache/roads.json"
+
 app.use(
     cors({
-        origin: 'http://localhost:5174',
+        origin: clientUrl,
         preflightContinue: true,
     }),
 );
 
 app.get('/data', async function(req,res) {
-    const { data } = await axios.get("https://its62.ru/static-cache/roads.json")
+    const { data } = await axios.get(dataUrl)
     res.json(data);
 });
 
