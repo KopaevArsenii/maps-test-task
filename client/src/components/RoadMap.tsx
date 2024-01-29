@@ -23,6 +23,9 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {roads.map(road => {
+                    if (road.id === 3) {
+                        console.log(JSON.stringify(road.coordinates))
+                    }
                     return (
                         <Polyline key={road.id} positions={RoadUtils.swapCoordinatesArray(road.coordinates[0])} color="red">
                             <Marker position={RoadUtils.calculateCenterCoordinate(road.coordinates[0])}>
