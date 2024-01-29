@@ -1,5 +1,5 @@
 import {FC} from "react";
-import "./InfoBlock.css"
+import {Box} from "@mui/system";
 
 interface InfoBlockProps {
     title: string,
@@ -8,10 +8,12 @@ interface InfoBlockProps {
 
 const InfoBlock:FC<InfoBlockProps> = ({ title, info }) => {
     return (
-        <div>
-            <div className="info-title">{title}</div>
-            <div>{info}</div>
-        </div>
+        <Box>
+            <Box sx={{
+                fontWeight: 'bold'
+            }}>{title}</Box>
+            <Box>{info}</Box>
+        </Box>
     )
 }
 

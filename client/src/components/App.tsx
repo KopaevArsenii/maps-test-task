@@ -2,9 +2,9 @@ import {FC, useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 
-import Spinner from "../Spinner/Spinner.tsx";
-import RoadMap from "../RoadMap/RoadMap.tsx";
-import { Road } from "../../types";
+import Spinner from "./Spinner.tsx";
+import RoadMap from "./RoadMap.tsx";
+import { Road } from "../types";
 
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,9 +1,9 @@
 import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {FC} from "react";
-import {Coordinate, Road} from "../../types";
-import InfoBlock from "../InfoBlock/InfoBlock.tsx";
-import "./RoadMap.css"
+import {Coordinate, Road} from "../types";
+import InfoBlock from "./InfoBlock.tsx";
+import {Stack} from "@mui/system";
 
 interface RoadMapProps {
     roads: Road[]
@@ -80,14 +80,14 @@ const RoadMap:FC<RoadMapProps> = ({ roads }) => {
                         <Polyline key={road.id} positions={swapCoordinatesArray(road.coordinates[0])} color="red">
                             <Marker position={swapCoordinate(calculateCenterCoordinate(road.coordinates[0]))}>
                                 <Popup>
-                                    <div className={"info-wrapper"}>
+                                    <Stack spacing={2}>
                                         <InfoBlock title={"Id:"} info={road.id} />
                                         <InfoBlock title={"Название:"} info={road.name} />
                                         <InfoBlock title={"Номер:"} info={road.number} />
                                         <InfoBlock title={"Тип:"} info={road.type} />
                                         <InfoBlock title={"Уникальный номер:"} info={road.unique_value} />
                                         <InfoBlock title={"Длинна дороги:"} info={calculateRoadLength(road)} />
-                                    </div>
+                                    </Stack>
                                 </Popup>
                             </Marker>
                         </Polyline>
