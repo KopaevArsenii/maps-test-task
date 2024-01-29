@@ -16,4 +16,9 @@ $ node app.js
 ```
 $ cd client
 $ npm run dev
-``` 
+```
+- Чтобы запустить тесты из корневой папки выполняем:
+```
+$ cd client
+$ npm test
+```
