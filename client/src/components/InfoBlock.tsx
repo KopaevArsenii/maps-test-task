@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {Box} from "@mui/system";
+import styles from "../styles/InfoBlock.module.scss"
 
 interface InfoBlockProps {
     title: string,
@@ -9,10 +10,12 @@ interface InfoBlockProps {
 const InfoBlock:FC<InfoBlockProps> = ({ title, info }) => {
     return (
         <Box>
-            <Box sx={{
-                fontWeight: 'bold'
-            }}>{title}</Box>
-            <Box>{info}</Box>
+            <Box className={styles.title}>
+                {title}
+            </Box>
+            <Box>
+                {info}
+            </Box>
         </Box>
     )
 }
